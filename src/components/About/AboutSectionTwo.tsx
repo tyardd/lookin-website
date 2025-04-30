@@ -1,74 +1,117 @@
+// src/components/About/AboutSectionTwo.tsx
 import Image from "next/image";
 
 const AboutSectionTwo = () => {
   return (
     <section className="py-16 md:py-20 lg:py-28">
-      <div className="container">
-        <div className="mb-12 text-center">
+      {/* space-y-16 gives 4rem (64px) between each child */}
+      <div className="container space-y-16">
+        
+        {/* Main Title */}
+        <div className="text-center">
           <h2 className="mb-4 text-3xl font-bold text-black dark:text-white sm:text-4xl">
             Meet the Team
           </h2>
-          <p className="text-lg text-body-color dark:text-gray-300 max-w-2xl mx-auto">
-          </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-10">
-          {/* Team Member 1 */}
-          <div className="w-full max-w-xs text-center">
-            <Image
-              src="/images/team/Tolga.png"
-              alt="Tolga"
-              width={250}
-              height={250}
-              className="mx-auto rounded-full shadow-lg"
+        {/* Board Section */}
+        <div className="text-center space-y-6">
+          <h3 className="text-3xl font-semibold text-black dark:text-white sm:text-4xl">
+            Board
+          </h3>
+          <div className="flex flex-wrap justify-center gap-10">
+            <TeamMember
+              name="Dr. Tolga Yardimci"
+              role="CEO & CTO"
+              image="/images/team/Tolga.png"
             />
-            <h4 className="mt-4 text-xl font-semibold text-black dark:text-white">Dr. Tolga Yardimci</h4>
-            <p className="text-body-color dark:text-gray-300">CEO & CTO</p>
+            <TeamMember
+              name="Prof. Mona Jarrahi"
+              role="Co-founder & Board Member"
+              image="/images/team/Mona.png"
+            />
           </div>
+        </div>
 
-          {/* Team Member 2 */}
-          <div className="w-full max-w-xs text-center">
-            <Image
-              src="/images/team/Mona.png"
-              alt="Mona"
-              width={250}
-              height={250}
-              className="mx-auto rounded-full shadow-lg"
+        {/* Technical Team Section */}
+        <div className="text-center space-y-6">
+          <h3 className="text-3xl font-semibold text-black dark:text-white sm:text-4xl">
+            Technical Team
+          </h3>
+          <div className="flex flex-wrap justify-center gap-10">
+            <TeamMember
+              name="Dr. Ali Aiden Charkhesht"
+              role="Principle Hardware Engineer"
+              image="/images/team/Ali2.png"
             />
-            <h4 className="mt-4 text-xl font-semibold text-black dark:text-white">Prof. Mona Jarrahi</h4>
-            <p className="text-body-color dark:text-gray-300">Co-founder & Board Member</p>
+            <TeamMember
+              name="Dr. Greg Pawin"
+              role="Lead Software Engineer"
+              image="/images/team/Greg2.png"
+            />
+            <TeamMember
+              name="Shawn Recinos"
+              role="R&D Engineer"
+              image="/images/team/Shawn2.png"
+            />
           </div>
+        </div>
 
-          {/* Team Member 3 */}
-          <div className="w-full max-w-xs text-center">
-            <Image
-              src="/images/team/Qing.png"
-              alt="Qing"
-              width={250}
-              height={250}
-              className="mx-auto rounded-full shadow-lg"
+        {/* Administrative Team Section */}
+        <div className="text-center space-y-6">
+          <h3 className="text-3xl font-semibold text-black dark:text-white sm:text-4xl">
+            Administrative Team
+          </h3>
+          <div className="flex flex-wrap justify-center gap-10">
+            <TeamMember
+              name="Qing Shao"
+              role="Administrative Officer"
+              image="/images/team/Qing.png"
             />
-            <h4 className="mt-4 text-xl font-semibold text-black dark:text-white">Qing Shao</h4>
-            <p className="text-body-color dark:text-gray-300">CAO</p>
           </div>
+        </div>
 
-          {/* Team Member 4 */}
-          <div className="w-full max-w-xs text-center">
-            <Image
-              src="/images/team/Rick.png"
-              alt="Rick"
-              width={250}
-              height={250}
-              className="mx-auto rounded-full shadow-lg"
+        {/* Advisors Section */}
+        <div className="text-center space-y-6">
+          <h3 className="text-3xl font-semibold text-black dark:text-white sm:text-4xl">
+            Advisors
+          </h3>
+          <div className="flex flex-wrap justify-center gap-10">
+            <TeamMember
+              name="Rick Friedman"
+              role="Legal Advisor"
+              image="/images/team/Rick.png"
             />
-            <h4 className="mt-4 text-xl font-semibold text-black dark:text-white">Rick Friedman</h4>
-            <p className="text-body-color dark:text-gray-300">Legal Advisor</p>
+            <TeamMember
+              name="James Valle"
+              role="Financial Advisor"
+              image="/images/team/James.png"
+            />
           </div>
-          {/* Add more team members as needed */}
         </div>
       </div>
     </section>
   );
 };
+
+const TeamMember = ({
+  name,
+  role,
+  image,
+}: {
+  name: string;
+  role: string;
+  image: string;
+}) => (
+  <div className="w-full max-w-xs text-center">
+    <div className="relative w-64 h-64 mx-auto rounded-full overflow-hidden shadow-lg">
+      <Image src={image} alt={name} fill className="object-cover" />
+    </div>
+    <h4 className="mt-4 text-xl font-semibold text-black dark:text-white">
+      {name}
+    </h4>
+    <p className="text-body-color dark:text-gray-300">{role}</p>
+  </div>
+);
 
 export default AboutSectionTwo;

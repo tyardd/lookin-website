@@ -12,7 +12,6 @@ const blogData: Blog[] = [
       image: "/images/blog/author-01\.png",
       designation: "Graphic Designer",
     },
-    tags: ["New Award"],
     publishDate: "2024",
   },
   {
@@ -26,7 +25,6 @@ const blogData: Blog[] = [
       image: "/images/blog/author-02.png",
       designation: "Content Writer",
     },
-    tags: ["New Award"],
     publishDate: "2023",
   },
   {
@@ -40,7 +38,6 @@ const blogData: Blog[] = [
       image: "/images/blog/author-03.png",
       designation: "Graphic Designer",
     },
-    tags: ["New award"],
     publishDate: "2023",
   },
   {
@@ -54,7 +51,6 @@ const blogData: Blog[] = [
       image: "/images/blog/author-03.png",
       designation: "Graphic Designer",
     },
-    tags: ["New award"],
     publishDate: "2022",
   },
   {
@@ -68,7 +64,6 @@ const blogData: Blog[] = [
       image: "/images/blog/author-03.png",
       designation: "Graphic Designer",
     },
-    tags: ["New award"],
     publishDate: "2021",
   },
   {
@@ -82,7 +77,6 @@ const blogData: Blog[] = [
       image: "/images/blog/author-03.png",
       designation: "Graphic Designer",
     },
-    tags: ["New award"],
     publishDate: "2020",
   },
 ];
