@@ -45,7 +45,7 @@ const blogData: Blog[] = [
     title: "The Office of Naval Research awarded Lookin a SBIR Phase II award",
     paragraph:
       "During the project, Lookin develops a multi-pixel terahertz imaging system and uses it for applications the Navy and the Army can benefit from.",
-    image: "/images/blog/ONR.png",
+    image: "/images/blog/onr2.png",
     author: {
       name: "Lethium Deo",
       image: "/images/blog/author-03.png",
