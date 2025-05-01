@@ -1,3 +1,5 @@
+// src/components/Contact/index.tsx
+"use client";
 import React from "react";
 import NewsLatterBox from "./NewsLatterBox";
 
@@ -6,7 +8,7 @@ const Contact = () => {
     <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
-          {/* Left column */}
+          {/* Left column: Support Ticket Form */}
           <div className="w-full px-4 lg:w-7/12 xl:w-8/12">
             <div
               className="mb-12 rounded-sm bg-white px-8 py-11 shadow-three dark:bg-gray-dark sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]"
@@ -19,12 +21,13 @@ const Contact = () => {
                 Our support team will get back to you ASAP via email.
               </p>
 
-              {/* FormSubmit form */}
               <form
-                action="https://formsubmit.co/info@lookininc.com"
+                action="https://formsubmit.co/info%40lookininc.com"
                 method="POST"
               >
+                {/* disable built-in captcha */}
                 <input type="hidden" name="_captcha" value="false" />
+                {/* optional redirect after submit */}
                 {/* <input type="hidden" name="_next" value="https://lookininc.com/thank-you" /> */}
 
                 <div className="-mx-4 flex flex-wrap">
@@ -82,7 +85,7 @@ const Contact = () => {
                   <div className="w-full px-4">
                     <button
                       type="submit"
-                      className="rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit hover:bg-primary/90 dark:shadow-submit-dark"
+                      className="rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark"
                     >
                       Submit Ticket
                     </button>
@@ -92,7 +95,7 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Right column */}
+          {/* Right column: Newsletter Signup */}
           <div className="w-full px-4 lg:w-5/12 xl:w-4/12">
             <NewsLatterBox />
           </div>
