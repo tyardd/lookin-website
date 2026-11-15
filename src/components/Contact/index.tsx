@@ -1,104 +1,191 @@
-// src/components/Contact/index.tsx
 "use client";
-import React from "react";
-import NewsLatterBox from "./NewsLatterBox";
+import { FormEvent, useState } from "react";
+
+// Messages are delivered to this inbox through FormSubmit (formsubmit.co).
+const INBOX = "info@lookininc.com";
+
+type Status = "idle" | "sending" | "sent" | "error";
+
+const field =
+  "w-full rounded-md border border-white/15 bg-ink-700 px-4 py-3 text-base text-white outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent";
+const label = "mb-2 block text-sm font-medium text-white";
 
 const Contact = () => {
+  const [status, setStatus] = useState<Status>("idle");
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries());
+    if (data._honey) return; // a spam bot filled the hidden field
+    setStatus("sending");
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${INBOX}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+      if (!res.ok || String(json.success) !== "true") throw new Error("failed");
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
-    <section id="contact" className="overflow-hidden py-16 md:py-20 lg:py-28">
+    <section
+      id="contact"
+      className="border-t border-white/10 bg-ink-900 py-20 lg:py-28"
+    >
       <div className="container">
-        <div className="-mx-4 flex flex-wrap">
-          {/* Left column: Support Ticket Form */}
-          <div className="w-full px-4 lg:w-7/12 xl:w-8/12">
-            <div
-              className="mb-12 rounded-sm bg-white px-8 py-11 shadow-three dark:bg-gray-dark sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]"
-              data-wow-delay=".15s"
-            >
-              <h2 className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-3xl lg:text-2xl xl:text-3xl">
-                Need Help? Open a Ticket
-              </h2>
-              <p className="mb-12 text-base font-medium text-body-color">
-                Our support team will get back to you ASAP via email.
-              </p>
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
+              Contact
+            </p>
+            <h2 className="text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">
+              Contact us
+            </h2>
+            <p className="mt-5 max-w-md text-base leading-relaxed text-mist sm:text-lg">
+              Tell us about your material, process or inspection challenge and
+              we will get back to you by email.
+            </p>
 
-              <form
-                action="https://formsubmit.co/info%40lookininc.com"
-                method="POST"
-              >
-                {/* disable built-in captcha */}
-                <input type="hidden" name="_captcha" value="false" />
-                {/* optional redirect after submit */}
-                {/* <input type="hidden" name="_next" value="https://lookininc.com/thank-you" /> */}
+            <dl className="mt-10 space-y-6 text-[15px]">
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-fog">
+                  Email
+                </dt>
+                <dd className="mt-1.5">
+                  <a
+                    href={`mailto:${INBOX}`}
+                    className="text-white underline decoration-white/30 underline-offset-4 hover:decoration-accent"
+                  >
+                    {INBOX}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-xs font-semibold uppercase tracking-[0.18em] text-fog">
+                  Office and lab
+                </dt>
+                <dd className="mt-1.5 leading-relaxed text-mist">
+                  5839 Green Valley Cir., Ste. 205
+                  <br />
+                  Culver City, CA 90230
+                </dd>
+              </div>
+            </dl>
+          </div>
 
-                <div className="-mx-4 flex flex-wrap">
-                  <div className="w-full px-4 md:w-1/2">
-                    <label
-                      htmlFor="name"
-                      className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                    >
-                      Your Name
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      placeholder="Enter your name"
-                      className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark"
-                    />
-                  </div>
+          <form
+            onSubmit={onSubmit}
+            action={`https://formsubmit.co/${INBOX}`}
+            method="POST"
+            className="rounded-xl border border-white/10 bg-ink-800 p-6 sm:p-9"
+          >
+            <input
+              type="hidden"
+              name="_subject"
+              value="New message from lookininc.com"
+            />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            {/* honeypot: hidden from people, filled in by bots */}
+            <input
+              type="text"
+              name="_honey"
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
 
-                  <div className="w-full px-4 md:w-1/2">
-                    <label
-                      htmlFor="email"
-                      className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                    >
-                      Your Email
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="Enter your email"
-                      className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark"
-                    />
-                  </div>
-
-                  <div className="w-full px-4">
-                    <label
-                      htmlFor="message"
-                      className="mb-3 block text-sm font-medium text-dark dark:text-white"
-                    >
-                      Your Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={5}
-                      required
-                      placeholder="Enter your message"
-                      className="border-stroke w-full resize-none rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark"
-                    />
-                  </div>
-
-                  <div className="w-full px-4">
-                    <button
-                      type="submit"
-                      className="rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark"
-                    >
-                      Submit Ticket
-                    </button>
-                  </div>
-                </div>
-              </form>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div>
+                <label htmlFor="name" className={label}>
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  autoComplete="name"
+                  className={field}
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className={label}>
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  className={field}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label htmlFor="company" className={label}>
+                  Company{" "}
+                  <span className="font-normal text-fog">(optional)</span>
+                </label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  autoComplete="organization"
+                  className={field}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label htmlFor="message" className={label}>
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={6}
+                  required
+                  className={`${field} resize-y`}
+                />
+              </div>
             </div>
-          </div>
 
-          {/* Right column: Newsletter Signup */}
-          <div className="w-full px-4 lg:w-5/12 xl:w-4/12">
-            <NewsLatterBox />
-          </div>
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="rounded-md bg-accent-deep px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-accent disabled:cursor-wait disabled:opacity-60"
+              >
+                {status === "sending" ? "Sending..." : "Send message"}
+              </button>
+              <p role="status" aria-live="polite" className="text-sm">
+                {status === "sent" && (
+                  <span className="text-emerald-400">
+                    Thank you. Your message has been sent.
+                  </span>
+                )}
+                {status === "error" && (
+                  <span className="text-red-400">
+                    Your message could not be sent. Please email us at{" "}
+                    <a href={`mailto:${INBOX}`} className="underline">
+                      {INBOX}
+                    </a>
+                    .
+                  </span>
+                )}
+              </p>
+            </div>
+          </form>
         </div>
       </div>
     </section>

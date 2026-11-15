@@ -1,32 +1,18 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
-import AboutSectionTwo from "@/components/About/AboutSectionTwo";
-import Blog from "@/components/Blog";
-/*import Brands from "@/components/Brands";*/
-import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
-import Pricing from "@/components/Pricing";
-import Testimonials from "@/components/Testimonials";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Lookin, Inc.",
-  description: "Revolutionizing Terahertz Technology",
-  // other metadata
-};
+import Publications from "@/components/Publications";
+import Solutions from "@/components/Solutions";
+import Sponsors from "@/components/Sponsors";
 
 export default function Home() {
   return (
     <>
-      <ScrollUp />
       <Hero />
       <Features />
-     
-      <AboutSectionOne />
-     
-      
-      <Blog />
+      <Solutions />
+      <Publications />
+      <Sponsors />
       <Contact />
     </>
   );

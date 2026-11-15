@@ -16,25 +16,28 @@ module.exports = {
 
     screens: {
       xs: "450px",
-      // => @media (min-width: 450px) { ... }
-
       sm: "575px",
-      // => @media (min-width: 576px) { ... }
-
       md: "768px",
-      // => @media (min-width: 768px) { ... }
-
       lg: "992px",
-      // => @media (min-width: 992px) { ... }
-
       xl: "1200px",
-      // => @media (min-width: 1200px) { ... }
-
       "2xl": "1400px",
-      // => @media (min-width: 1400px) { ... }
     },
     extend: {
       colors: {
+        // Lookin dark palette (matches the conference slide deck)
+        ink: {
+          DEFAULT: "#131417",
+          900: "#17181C",
+          800: "#1D1F24",
+          700: "#25282E",
+          600: "#30343B",
+        },
+        mist: "#A7ACB7",
+        fog: "#8B919D",
+        accent: {
+          DEFAULT: "#6481FF",
+          deep: "#4F6BF0",
+        },
         current: "currentColor",
         transparent: "transparent",
         white: "#FFFFFF",

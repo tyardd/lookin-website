@@ -1,26 +1,55 @@
-import SectionTitle from "../Common/SectionTitle";
-import SingleFeature from "./SingleFeature";
+import SectionHeading from "../Common/SectionHeading";
+import Image from "next/image";
 import featuresData from "./featuresData";
+import Waveform from "./Waveform";
 
 const Features = () => {
   return (
-    <>
-      <section id="features" className="py-16 md:py-20 lg:py-28">
-        <div className="container">
-          <SectionTitle
-            title="Why Lookin's Terahertz Scanners?"
-            paragraph=""
-            center
-          />
+    <section
+      id="technology"
+      className="border-t border-white/10 bg-ink-900 py-20 lg:py-28"
+    >
+      <div className="container">
+        <SectionHeading
+          eyebrow="Technology"
+          title="Why Lookin's Terahertz Scanners?"
+        />
 
-          <div className="grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
-            {featuresData.map((feature) => (
-              <SingleFeature key={feature.id} feature={feature} />
-            ))}
-          </div>
+        <div className="mt-12 grid gap-4 lg:mt-16 lg:grid-cols-2">
+          <figure className="overflow-hidden rounded-xl border border-white/10 bg-ink-800">
+            <Image
+              src="/images/pca-module.jpg"
+              alt="Fiber-coupled plasmonic photoconductive antenna module with a silicon lens"
+              width={1200}
+              height={743}
+              sizes="(min-width: 992px) 46vw, 100vw"
+              className="aspect-[16/10] w-full object-cover"
+            />
+            <figcaption className="border-t border-white/10 px-5 py-3 text-xs leading-relaxed text-fog">
+              Fiber-coupled plasmonic photoconductive antenna, the terahertz
+              source and detector at the core of our systems.
+            </figcaption>
+          </figure>
+          <Waveform />
         </div>
-      </section>
-    </>
+
+        <div className="mt-4 grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+          {featuresData.map((feature) => (
+            <div key={feature.id} className="bg-ink-800 p-7 lg:p-9">
+              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent">
+                {feature.icon}
+              </div>
+              <h3 className="text-lg font-semibold text-white">
+                {feature.title}
+              </h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-mist">
+                {feature.paragraph}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
