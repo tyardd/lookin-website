@@ -15,15 +15,15 @@ const Features = () => {
           title="Why Lookin's Terahertz Scanners?"
         />
 
-        <div className="mt-12 grid gap-4 lg:mt-16 lg:grid-cols-2">
-          <figure className="overflow-hidden rounded-xl border border-white/10 bg-ink-800">
+        <div className="mt-12 grid gap-4 lg:mt-16 lg:grid-cols-[0.8fr_1.2fr]">
+          <figure className="flex flex-col overflow-hidden rounded-xl border border-white/10 bg-ink-800">
             <Image
               src="/images/pca-module.jpg"
               alt="Fiber-coupled plasmonic photoconductive antenna module with a silicon lens"
               width={1200}
               height={743}
-              sizes="(min-width: 992px) 46vw, 100vw"
-              className="aspect-[16/10] w-full object-cover"
+              sizes="(min-width: 992px) 40vw, 100vw"
+              className="aspect-[16/10] w-full flex-1 object-cover"
             />
             <figcaption className="border-t border-white/10 px-5 py-3 text-xs leading-relaxed text-fog">
               Fiber-coupled plasmonic photoconductive antenna, the terahertz
