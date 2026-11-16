@@ -9,9 +9,9 @@ type Status = "idle" | "sending" | "sent" | "error";
 // Product pages link here with ?interest=<slug>; the message box is prefilled.
 const PREFILL: Record<string, string> = {
   "single-pixel":
-    "I am interested in the Single-Pixel THz-TDS System. Please contact me with more information.\n\nSamples and measurements: ",
+    "I am interested in the single-pixel THz-TDS scanner. Please contact me with more information.\n\nSamples and measurements: ",
   "multi-pixel":
-    "I am interested in the Multi-Pixel THz Imaging Scanner.\n\nPart or web width:\nLine speed:\nMaterials:\nWhat we need to measure:",
+    "I am interested in the multi-pixel THz-TDS scanner.\n\nPart or web width:\nLine speed:\nMaterials:\nWhat we need to measure:",
 };
 
 const field =

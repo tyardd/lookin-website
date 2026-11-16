@@ -150,12 +150,6 @@ export const ProductHero = ({
             >
               Contact us
             </Link>
-            <a
-              href="#specifications"
-              className="rounded-md border border-white/20 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:border-white/50"
-            >
-              Specifications
-            </a>
           </div>
         </div>
         <figure className="overflow-hidden rounded-xl border border-white/10 bg-ink-800 shadow-2xl shadow-black/40">

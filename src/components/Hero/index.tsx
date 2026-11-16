@@ -4,7 +4,7 @@ import Link from "next/link";
 const stats = [
   {
     value: "1000x Higher",
-    label: "dynamic range and throughput over conventional THz-TDS",
+    label: "dynamic range and throughput over conventional systems",
   },
   { value: "Non-contact", label: "non-invasive, non-destructive inspection" },
   { value: "In-line", label: "real-time quality control on the production line" },

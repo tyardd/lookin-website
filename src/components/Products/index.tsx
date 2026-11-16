@@ -10,10 +10,10 @@ const Products = () => {
       className="border-t border-white/10 bg-ink py-20 lg:py-28"
     >
       <div className="container">
-        <SectionHeading eyebrow="Products" title="Terahertz systems for the lab and the line">
-          A single-pixel system for spectroscopy and imaging, and a multi-pixel
-          scanner for high-throughput, in-line inspection.
-        </SectionHeading>
+        <SectionHeading
+          eyebrow="Products"
+          title="Single-pixel and multi-pixel terahertz scanners"
+        />
 
         <div className="mt-12 grid gap-6 lg:mt-16 lg:grid-cols-2">
           {products.map((p) => (
@@ -30,25 +30,13 @@ const Products = () => {
                 sizes="(min-width: 992px) 45vw, 100vw"
                 className="aspect-[16/9] w-full object-cover"
               />
-              <div className="flex flex-1 flex-col p-7 lg:p-9">
+              <div className="flex items-center justify-between gap-4 px-7 py-6">
                 <h3 className="text-xl font-semibold text-white">{p.name}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-mist">
-                  {p.tagline}
-                </p>
-                <dl className="mt-6 grid grid-cols-3 gap-4 border-t border-white/10 pt-6">
-                  {p.highlights.slice(0, 3).map((h) => (
-                    <div key={h.label}>
-                      <dt className="text-lg font-semibold text-white">
-                        {h.value}
-                      </dt>
-                      <dd className="mt-1 text-xs leading-snug text-fog">
-                        {h.label}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-                <span className="mt-auto pt-7 text-sm font-semibold text-accent group-hover:text-white">
-                  View specifications →
+                <span
+                  aria-hidden="true"
+                  className="text-xl text-accent transition-transform group-hover:translate-x-1 group-hover:text-white"
+                >
+                  →
                 </span>
               </div>
             </Link>

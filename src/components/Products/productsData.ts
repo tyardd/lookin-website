@@ -9,12 +9,12 @@ export type Product = {
   name: string;
   tagline: string;
   image: { src: string; width: number; height: number; alt: string };
-  highlights: Spec[]; // shown on the home card and in the page's key-figure strip
+  highlights: Spec[]; // key-figure strip on the product page
 };
 
 export const singlePixel: Product = {
   slug: "single-pixel",
-  name: "Single-Pixel THz-TDS System",
+  name: "Single-pixel THz-TDS scanner",
   tagline:
     "Fiber-coupled terahertz time-domain spectroscopy and imaging with record-high dynamic range.",
   image: {
@@ -24,16 +24,16 @@ export const singlePixel: Product = {
     alt: "Fiber-coupled terahertz emitter and detector heads with parabolic mirrors on an optical table",
   },
   highlights: [
-    { value: "145 dB", label: "peak dynamic range" },
-    { value: "118 dB", label: "in a single trace" },
+    { value: "145 dB", label: "peak dynamic range over 60 s" },
+    { value: "121 dB", label: "peak dynamic range, single trace" },
     { value: "> 6 THz", label: "spectral range" },
-    { value: "2.1 mW", label: "average terahertz power" },
+    { value: "> 2 mW", label: "terahertz power" },
   ],
 };
 
 export const multiPixel: Product = {
   slug: "multi-pixel",
-  name: "Multi-Pixel THz Imaging Scanner",
+  name: "Multi-pixel THz-TDS scanner",
   tagline:
     "Pulsed terahertz line scanning for in-line inspection, configured to your part and production line.",
   image: {
@@ -51,55 +51,6 @@ export const multiPixel: Product = {
 };
 
 export const products = [singlePixel, multiPixel];
-
-export const singlePixelSpecs: Spec[] = [
-  {
-    label: "Peak dynamic range",
-    value: "118 dB in a single trace; 145 dB with averaging",
-  },
-  { label: "Spectral range", value: "> 6 THz" },
-  { label: "Average terahertz power", value: "Up to 2.1 mW" },
-  { label: "Scan range", value: "Up to 200 ps" },
-  { label: "Frequency resolution", value: "5 GHz (200 ps scan range)" },
-  {
-    label: "Emitter and detector",
-    value: "Polarization-resilient plasmonic nanoantenna arrays on GaAs",
-  },
-];
-
-export const multiPixelPerformance: Spec[] = [
-  { label: "Frame rate", value: "50 Hz" },
-  { label: "Dynamic range per pixel", value: "> 60 dB without averaging" },
-  { label: "Bandwidth per pixel", value: "> 2 THz without averaging" },
-  {
-    label: "Data per pixel",
-    value: "Full time-domain waveform and spectrum",
-  },
-  {
-    label: "Software",
-    value: "Real-time analysis on the line and offline analysis tools",
-  },
-];
-
-export const multiPixelConfigurable: Spec[] = [
-  {
-    label: "Field of view",
-    value: "Adjustable to the width of your part or web",
-  },
-  {
-    label: "Pixel count and pixel size",
-    value: "Scaled to the resolution and coverage you need",
-  },
-  {
-    label: "Scan speed",
-    value: "Matched to your line speed",
-  },
-  {
-    label: "Measured quantities",
-    value: "Thickness, defects, porosity, loading, composition and more",
-  },
-];
-
 export const demonstrated = [
   {
     title: "Battery electrodes",

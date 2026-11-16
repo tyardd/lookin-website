@@ -66,7 +66,7 @@ const featuresData: Feature[] = [
     ),
     title: "Hyperspectral Imaging",
     paragraph:
-      "Every pixel captures a rich terahertz spectral fingerprint, revealing hidden material composition beyond the reach of conventional imaging.",
+      "Every pixel captures a rich terahertz spectral fingerprint, revealing hidden material composition beyond the reach of conventional imaging systems.",
   },
   {
     id: 5,

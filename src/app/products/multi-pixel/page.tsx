@@ -4,18 +4,12 @@ import {
   Plot,
   ProductHero,
   QuoteCta,
-  SpecTable,
 } from "@/components/Products/Parts";
-import {
-  demonstrated,
-  multiPixel,
-  multiPixelConfigurable,
-  multiPixelPerformance,
-} from "@/components/Products/productsData";
+import { demonstrated, multiPixel } from "@/components/Products/productsData";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Multi-Pixel THz Imaging Scanner | Lookin, Inc.",
+  title: "Multi-pixel THz-TDS scanner | Lookin, Inc.",
   description:
     "The first multi-pixel pulsed terahertz imaging system: a 50 Hz frame rate with more than 60 dB dynamic range and 2 THz bandwidth per pixel, configured to your production line.",
 };
@@ -45,27 +39,7 @@ export default function MultiPixelPage() {
         </div>
       </section>
 
-      <section
-        id="specifications"
-        className="mt-16 border-t border-white/10 bg-ink-900 py-20 lg:py-24"
-      >
-        <div className="container">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <SectionHeading eyebrow="Specifications" title="Configured to your line">
-              Every production line is different, so each scanner is built
-              around your part. Per-pixel performance is the same in every
-              configuration; field of view, pixel count and scan speed are
-              chosen for your application.
-            </SectionHeading>
-            <div className="space-y-12">
-              <SpecTable title="Per-pixel performance" items={multiPixelPerformance} />
-              <SpecTable title="Configured to your application" items={multiPixelConfigurable} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/10 bg-ink py-20 lg:py-24">
+      <section className="mt-16 border-t border-white/10 bg-ink-900 py-20 lg:py-24">
         <div className="container">
           <SectionHeading eyebrow="Measured performance" title="A full waveform at every pixel">
             Data from a single pixel of the array, recorded without averaging.
@@ -89,7 +63,7 @@ export default function MultiPixelPage() {
         </div>
       </section>
 
-      <section className="border-t border-white/10 bg-ink-900 py-20 lg:py-24">
+      <section className="border-t border-white/10 bg-ink py-20 lg:py-24">
         <div className="container">
           <SectionHeading eyebrow="Demonstrated configurations" title="Proven on real parts and production lines" />
           <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2">
