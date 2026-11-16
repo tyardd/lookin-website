@@ -4,6 +4,11 @@
 //   2. the third echo is windowed
 //   3. its Fourier transform is drawn, with a few spectral signatures marked
 
+// Time axis: 0-20 ps across the plot (x = 12 ... 348).
+const T_MAX = 20;
+const tx = (t: number) => 12 + (t / T_MAX) * 336;
+const T_TICKS = [0, 5, 10, 15, 20];
+
 const pulse = (x: number, centre: number, amp: number, width: number) => {
   const u = (x - centre) / width;
   return amp * Math.exp(-(u * u) / 2) * Math.cos(2.3 * u);
@@ -13,29 +18,40 @@ function timePath() {
   const pts: string[] = [];
   for (let x = 12; x <= 348; x += 1.5) {
     const y =
-      104 - pulse(x, 70, 72, 9) + pulse(x, 190, 34, 10) - pulse(x, 285, 26, 11);
+      100 - pulse(x, 70, 70, 9) + pulse(x, 190, 33, 10) - pulse(x, 285, 25, 11);
     pts.push(`${x},${y.toFixed(1)}`);
   }
   return `M${pts.join(" L")}`;
 }
 
-// Spectrum of the windowed echo: a smooth roll-off with three absorption dips.
-const DIPS = [0.9, 1.65, 2.35]; // THz
-const F_MAX = 3.2;
-const fx = (f: number) => 34 + (f / F_MAX) * 192;
-const amplitude = (f: number) => {
-  let a = Math.exp(-Math.pow((f - 0.45) / 1.45, 2)) * (1 - Math.exp(-f * 9));
+// Spectrum of the windowed echo, in dB: roll-off into a noise floor near
+// 6 THz, with three absorption signatures.
+const F_MAX = 6;
+const fx = (f: number) => 34 + (f / F_MAX) * 194;
+const F_TICKS = [0, 1, 2, 3, 4, 5, 6];
+const DIPS = [1.15, 2.45, 3.7]; // THz
+const DB_TOP = 0;
+const DB_FLOOR = -118;
+const powerDb = (f: number) => {
+  const rise = 1 - Math.exp(-f * 7);
+  let db = 20 * Math.log10(Math.max(rise, 1e-6)) - 20.5 * f;
   DIPS.forEach((d, i) => {
-    const w = 0.045 + i * 0.01;
-    a *= 1 - (0.62 - i * 0.08) / (1 + Math.pow((f - d) / w, 2));
+    const w = 0.07 + i * 0.015;
+    db -= (16 - i * 3) / (1 + Math.pow((f - d) / w, 2));
   });
-  return a;
+  // add the noise floor in linear power, then a little deterministic ripple
+  const lin = Math.pow(10, db / 10) + Math.pow(10, DB_FLOOR / 10);
+  const near = Math.max(0, Math.min(1, (f - 4.2) / 1.2));
+  const ripple =
+    (0.6 + 2.6 * near) *
+    (Math.sin(f * 41) * 0.6 + Math.sin(f * 97 + 1.3) * 0.4);
+  return 10 * Math.log10(lin) + ripple;
 };
-const fy = (f: number) => 176 - amplitude(f) * 140;
+const fy = (f: number) => 22 + ((DB_TOP - powerDb(f)) / (DB_TOP - DB_FLOOR + 6)) * 150;
 
 function spectrumPath() {
   const pts: string[] = [];
-  for (let f = 0.02; f <= F_MAX; f += 0.02) {
+  for (let f = 0.03; f <= F_MAX; f += 0.015) {
     pts.push(`${fx(f).toFixed(1)},${fy(f).toFixed(1)}`);
   }
   return `M${pts.join(" L")}`;
@@ -46,7 +62,7 @@ const panelLabel =
 
 const Waveform = () => (
   <figure className="flex h-full flex-col rounded-xl border border-white/10 bg-ink-800 p-5 sm:p-6">
-    <div className="grid flex-1 items-end gap-4 sm:grid-cols-[1.45fr_1fr]">
+    <div className="grid flex-1 items-start gap-4 sm:grid-cols-[3fr_2fr]">
       {/* Time domain */}
       <div>
         <div className={panelLabel}>
@@ -60,17 +76,17 @@ const Waveform = () => (
           aria-label="Illustration of a terahertz pulse and two echoes; the third echo is selected with a time window"
         >
           <g stroke="#ffffff" strokeOpacity="0.06">
-            {[36, 70, 104, 138, 172].map((y) => (
+            {[30, 65, 100, 135, 170].map((y) => (
               <line key={y} x1="12" x2="348" y1={y} y2={y} />
             ))}
-            {[72, 132, 192, 252, 312].map((x) => (
-              <line key={x} y1="12" y2="182" x1={x} x2={x} />
+            {T_TICKS.slice(1, -1).map((t) => (
+              <line key={t} y1="12" y2="174" x1={tx(t)} x2={tx(t)} />
             ))}
           </g>
           <g className="wf-window">
             <rect
               x="252"
-              y="62"
+              y="58"
               width="66"
               height="84"
               rx="4"
@@ -80,7 +96,7 @@ const Waveform = () => (
               strokeWidth="1.25"
               strokeDasharray="4 3"
             />
-            <text x="285" y="54" fill="#6481FF" fontSize="10" textAnchor="middle">
+            <text x="285" y="51" fill="#6481FF" fontSize="10" textAnchor="middle">
               Window
             </text>
           </g>
@@ -94,9 +110,21 @@ const Waveform = () => (
             strokeLinejoin="round"
             strokeLinecap="round"
           />
-          <text x="180" y="200" fill="#8B919D" fontSize="10" textAnchor="middle">
-            Time delay (ps)
-          </text>
+          <g fill="#8B919D" fontSize="9" textAnchor="middle">
+            {T_TICKS.map((t, i) => (
+              <text
+                key={t}
+                x={tx(t)}
+                y="187"
+                textAnchor={i === 0 ? "start" : i === T_TICKS.length - 1 ? "end" : "middle"}
+              >
+                {t}
+              </text>
+            ))}
+            <text x="180" y="203" fontSize="10">
+              Time (ps)
+            </text>
+          </g>
         </svg>
       </div>
 
@@ -109,11 +137,11 @@ const Waveform = () => (
           viewBox="0 0 240 208"
           className="w-full rounded-lg border border-white/10 bg-ink-900"
           role="img"
-          aria-label="Illustration of the spectrum of the windowed echo, with three absorption signatures marked"
+          aria-label="Illustration of the power spectrum of the windowed echo up to 6 THz, with three absorption signatures marked"
         >
           <path d="M34 14V176H228" fill="none" stroke="#ffffff" strokeOpacity="0.25" />
           <g fill="#8B919D" fontSize="9" textAnchor="middle">
-            {[1, 2, 3].map((f) => (
+            {F_TICKS.map((f) => (
               <g key={f}>
                 <line x1={fx(f)} x2={fx(f)} y1="176" y2="180" stroke="#ffffff" strokeOpacity="0.25" />
                 <text x={fx(f)} y="190">
@@ -125,7 +153,7 @@ const Waveform = () => (
               Frequency (THz)
             </text>
             <text x="14" y="95" fontSize="10" transform="rotate(-90 14 95)">
-              Amplitude
+              Power (dB)
             </text>
           </g>
           <path
@@ -156,8 +184,8 @@ const Waveform = () => (
       </div>
     </div>
     <figcaption className="mt-4 border-t border-white/10 pt-3 text-xs leading-relaxed text-fog">
-      Illustration: the reflected pulse is recorded, one echo is windowed, and
-      its Fourier transform reveals the spectral signatures of the material.
+      Illustration: time-domain terahertz pulse echoes are recorded to reveal
+      the spectral and structural information of samples.
     </figcaption>
   </figure>
 );

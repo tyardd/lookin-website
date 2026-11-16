@@ -11,7 +11,7 @@ export type Publication = {
 export const journals: Publication[] = [
   {
   year: 2024,
-  title: "Plasmonic photoconductive terahertz focal-plane array with pixel super-resolutio",
+  title: "Plasmonic photoconductive terahertz focal-plane array with pixel super-resolution",
   authors: "X Li, D Mengu, NT Yardimci, D Turan, A Charkhesht, A Ozcan, M Jarrahi",
   venue: "Nature Photonics 18, 139-148",
   url: "https://doi.org/10.1038/s41566-023-01346-2", // optional: makes the title a link

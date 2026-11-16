@@ -2,9 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const stats = [
-  { value: "1000x", label: "dynamic range over conventional THz-TDS" },
+  {
+    value: "1000x Higher",
+    label: "dynamic range and throughput over conventional THz-TDS",
+  },
   { value: "Non-contact", label: "non-invasive, non-destructive inspection" },
-  { value: "In-line", label: "quality control on the production line" },
+  { value: "In-line", label: "real-time quality control on the production line" },
 ];
 
 const Hero = () => {
@@ -25,11 +28,13 @@ const Hero = () => {
             <p className="mt-6 max-w-xl text-base leading-relaxed text-mist sm:text-lg">
               We engineer cutting-edge terahertz scanners designed for
               non-invasive, non-contact industrial quality inspection. Our
-              systems deliver an unprecedented 1000x improvement in dynamic
-              range over conventional terahertz time-domain
+              systems deliver an unprecedented 1000x enhancement in dynamic
+              range and throughput over conventional terahertz time-domain
               spectroscopy/imaging solutions, enabling faster, more sensitive,
               and more accurate quality control across advanced manufacturing
-              sectors.
+              sectors. Our scanners have been deployed for nondestructive
+              testing and evaluation across the energy, semiconductor,
+              aerospace, and pharmaceutical industries.
             </p>
             <div className="mt-9 flex flex-wrap gap-4">
               <Link
@@ -58,7 +63,7 @@ const Hero = () => {
               className="aspect-[4/3] w-full object-cover"
             />
             <figcaption className="border-t border-white/10 px-5 py-3 text-xs text-fog">
-              Lookin multi-pixel terahertz scanner
+              Lookin&rsquo;s multi-pixel terahertz scanner
             </figcaption>
           </figure>
         </div>

@@ -4,7 +4,7 @@ const Sponsors = () => {
   return (
     <section
       id="sponsors"
-      className="border-t border-white/10 bg-ink py-20 lg:py-24"
+      className="border-t border-white/10 bg-ink-900 py-20 lg:py-24"
     >
       <div className="container">
         <SectionHeading

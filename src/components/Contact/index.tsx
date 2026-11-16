@@ -1,10 +1,18 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 // Messages are delivered to this inbox through FormSubmit (formsubmit.co).
 const INBOX = "info@lookininc.com";
 
 type Status = "idle" | "sending" | "sent" | "error";
+
+// Product pages link here with ?interest=<slug>; the message box is prefilled.
+const PREFILL: Record<string, string> = {
+  "single-pixel":
+    "I am interested in the Single-Pixel THz-TDS System. Please contact me with more information.\n\nSamples and measurements: ",
+  "multi-pixel":
+    "I am interested in the Multi-Pixel THz Imaging Scanner.\n\nPart or web width:\nLine speed:\nMaterials:\nWhat we need to measure:",
+};
 
 const field =
   "w-full rounded-md border border-white/15 bg-ink-700 px-4 py-3 text-base text-white outline-none transition-colors focus:border-accent focus:ring-1 focus:ring-accent";
@@ -12,6 +20,17 @@ const label = "mb-2 block text-sm font-medium text-white";
 
 const Contact = () => {
   const [status, setStatus] = useState<Status>("idle");
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    const interest = new URLSearchParams(window.location.search).get(
+      "interest",
+    );
+    const text = interest ? PREFILL[interest] : undefined;
+    if (text && messageRef.current && !messageRef.current.value) {
+      messageRef.current.value = text;
+    }
+  }, []);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,7 +59,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="border-t border-white/10 bg-ink-900 py-20 lg:py-28"
+      className="border-t border-white/10 bg-ink py-20 lg:py-28"
     >
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
@@ -151,6 +170,7 @@ const Contact = () => {
                   Message
                 </label>
                 <textarea
+                  ref={messageRef}
                   id="message"
                   name="message"
                   rows={6}

@@ -48,7 +48,7 @@ const Publications = () => {
   return (
     <section
       id="publications"
-      className="border-t border-white/10 bg-ink-900 py-20 lg:py-28"
+      className="border-t border-white/10 bg-ink py-20 lg:py-28"
     >
       <div className="container">
         <SectionHeading eyebrow="Publications" title="Selected publications">

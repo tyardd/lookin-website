@@ -24,9 +24,9 @@ const featuresData: Feature[] = [
         <path d="M2 12h5l1.5-2.5L10 17l2-13 2 11 1.5-4 1 1H22" />
       </Icon>
     ),
-    title: "Terahertz Time-Domain Imaging",
+    title: "Time-Domain Imaging",
     paragraph:
-      "Picosecond terahertz pulses record a complete waveform at every point of the part, not just an intensity value.",
+      "Sub-picosecond terahertz pulses record a complete temporal waveform at every point, not just an intensity value.",
   },
   {
     id: 2,
@@ -41,7 +41,7 @@ const featuresData: Feature[] = [
     ),
     title: "Multi-Pixel Solutions",
     paragraph:
-      "Detector arrays image many points at once, replacing slow point-by-point raster scanning.",
+      "Detector arrays image many points at once, replacing slow point-by-point raster scanning and enhancing imaging throughput more than 1000 times.",
   },
   {
     id: 3,
@@ -53,7 +53,7 @@ const featuresData: Feature[] = [
     ),
     title: "High SNR, Wide Bandwidth",
     paragraph:
-      "Up to 1000x more dynamic range than conventional THz-TDS systems, for cleaner signals and shorter measurement times.",
+      "More than 1,000 times higher dynamic range than conventional THz-TDS systems, enabling cleaner signals, imaging through more lossy environments, and shorter measurement times.",
   },
   {
     id: 4,
@@ -64,9 +64,9 @@ const featuresData: Feature[] = [
         <path d="M3 16.5L12 21l9-4.5" />
       </Icon>
     ),
-    title: "Hyperspectral Images",
+    title: "Hyperspectral Imaging",
     paragraph:
-      "Every pixel carries a full terahertz spectrum, so an image can be read one frequency at a time.",
+      "Every pixel captures a rich terahertz spectral fingerprint, revealing hidden material composition beyond the reach of conventional imaging.",
   },
   {
     id: 5,
@@ -76,9 +76,9 @@ const featuresData: Feature[] = [
         <path d="M12 2v5m0 0l-2-2m2 2l2-2" />
       </Icon>
     ),
-    title: "Depth Information",
+    title: "3D Imaging",
     paragraph:
-      "Echoes from buried interfaces reveal layer thickness and subsurface structure without cutting the sample.",
+      "Terahertz echoes from buried interfaces reveal hidden 3D structures, enabling precise measurements of layer thicknesses and subsurface features without cutting the sample.",
   },
   {
     id: 6,
@@ -94,7 +94,7 @@ const featuresData: Feature[] = [
     ),
     title: "Advanced Data Analysis Solutions",
     paragraph:
-      "Software that turns raw waveforms into the thickness, defect and material metrics a production line needs.",
+      "Software transforms complex terahertz waveforms into actionable insights on material composition, layer thickness, and hidden defects, enabling precise, automated quality control in real time.",
   },
 ];
 export default featuresData;

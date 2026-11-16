@@ -3,27 +3,27 @@ import SectionHeading from "../Common/SectionHeading";
 const solutions = [
   {
     title: "Defect detection",
-    text: "Surface and buried flaws found without touching the part.",
+    text: "Non-contact detection of surface and subsurface defects, including hidden flaws.",
   },
   {
     title: "Thickness measurement",
-    text: "Coating and layer thickness read from pulse time delay.",
+    text: "Precise, non-contact measurement of coating and layer thicknesses using terahertz pulse time delays.",
   },
   {
     title: "Material characterization",
-    text: "Density, uniformity and structure across the full part.",
+    text: "Comprehensive assessment of material density, uniformity, and internal structure throughout the component.",
   },
   {
     title: "Chemical identification",
-    text: "Spectral signatures that distinguish chemistry and composition.",
+    text: "Identification of chemical composition and material properties through unique terahertz spectral fingerprints.",
   },
   {
     title: "Porosity evaluation",
-    text: "Sensitivity to voids and pore structure in coatings and layers.",
+    text: "Sensitive detection and characterization of voids and pore structures within coatings and material layers.",
   },
   {
     title: "Conductivity determination",
-    text: "Electrical conductivity measured with no contacts or probes.",
+    text: "Non-contact measurement of electrical conductivity without physical probes or electrodes.",
   },
 ];
 
@@ -31,7 +31,7 @@ const Solutions = () => {
   return (
     <section
       id="solutions"
-      className="border-t border-white/10 bg-ink py-20 lg:py-28"
+      className="border-t border-white/10 bg-ink-900 py-20 lg:py-28"
     >
       <div className="container">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
@@ -39,8 +39,8 @@ const Solutions = () => {
             eyebrow="Solutions"
             title="Offering in-line/in-situ quality control solutions for advanced manufacturing"
           >
-            One measurement, taken on the line without contact, answers several
-            quality questions at once.
+            A single, non-contact, in-line measurement provides comprehensive
+            insights into multiple quality parameters simultaneously.
           </SectionHeading>
 
           <ul className="grid gap-x-10 sm:grid-cols-2">

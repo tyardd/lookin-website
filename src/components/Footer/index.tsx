@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-white/10 bg-ink">
+    <footer className="border-t border-white/10 bg-ink-900">
       <div className="container flex flex-col gap-8 py-10 md:flex-row md:items-center md:justify-between">
         <div>
           <Link href="/" aria-label="Lookin home" className="inline-block">
