@@ -20,6 +20,7 @@ const label = "mb-2 block text-sm font-medium text-white";
 
 const Contact = () => {
   const [status, setStatus] = useState<Status>("idle");
+  const [detail, setDetail] = useState("");
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const Contact = () => {
     const data = Object.fromEntries(new FormData(form).entries());
     if (data._honey) return; // a spam bot filled the hidden field
     setStatus("sending");
+    setDetail("");
     try {
       const res = await fetch(`https://formsubmit.co/ajax/${INBOX}`, {
         method: "POST",
@@ -47,11 +49,16 @@ const Contact = () => {
         },
         body: JSON.stringify(data),
       });
-      const json = await res.json();
-      if (!res.ok || String(json.success) !== "true") throw new Error("failed");
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || String(json.success) !== "true") {
+        // Keep FormSubmit's own explanation (e.g. "This form needs Activation").
+        throw new Error(json.message || `HTTP ${res.status}`);
+      }
       form.reset();
       setStatus("sent");
-    } catch {
+    } catch (err) {
+      console.error("Contact form:", err);
+      setDetail(err instanceof Error ? err.message : "");
       setStatus("error");
     }
   };
@@ -201,6 +208,11 @@ const Contact = () => {
                       {INBOX}
                     </a>
                     .
+                    {detail && (
+                      <span className="mt-1 block text-xs text-red-400/80">
+                        ({detail})
+                      </span>
+                    )}
                   </span>
                 )}
               </p>
