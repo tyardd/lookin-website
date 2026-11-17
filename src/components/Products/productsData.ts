@@ -7,6 +7,7 @@ export type Spec = { label: string; value: string; note?: string };
 export type Product = {
   slug: "single-pixel" | "multi-pixel";
   name: string;
+  cardTitle: string; // heading above the photo in the home-page Products section
   tagline: string;
   image: { src: string; width: number; height: number; alt: string };
   highlights: Spec[]; // key-figure strip on the product page
@@ -15,13 +16,14 @@ export type Product = {
 export const singlePixel: Product = {
   slug: "single-pixel",
   name: "Single-pixel THz-TDS scanner",
+  cardTitle: "Single-pixel terahertz scanners",
   tagline:
     "Fiber-coupled terahertz time-domain spectroscopy and imaging with record-high dynamic range.",
   image: {
     src: "/images/products/single-pixel-system.jpg",
     width: 1400,
-    height: 708,
-    alt: "Fiber-coupled terahertz emitter and detector heads with parabolic mirrors on an optical table",
+    height: 1200,
+    alt: "Fiber-coupled terahertz source and detector heads with parabolic mirrors on an optical table",
   },
   highlights: [
     { value: "145 dB", label: "peak dynamic range over 60 s" },
@@ -34,6 +36,7 @@ export const singlePixel: Product = {
 export const multiPixel: Product = {
   slug: "multi-pixel",
   name: "Multi-pixel THz-TDS scanner",
+  cardTitle: "Multi-pixel terahertz scanners",
   tagline:
     "Pulsed terahertz line scanning for in-line inspection, configured to your part and production line.",
   image: {

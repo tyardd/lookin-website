@@ -19,7 +19,7 @@ export const journals: Publication[] = [
   {
   year: 2023,
   title: "Rapid sensing of hidden objects and defects using a single-pixel diffractive terahertz sensor",
-  authors: "N. T. Yardimci, M. Jarrahi",
+  authors: "J Li, X Li, NT Yardimci, J Hu, Y Li, J Chen, YC Hung, M Jarrahi, A Ozcan",
   venue: "Nature Communications 14, 6791",
   url: "https://doi.org/10.1038/s41467-023-42554-2", // optional: makes the title a link
   },
